@@ -1,0 +1,25 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+{{ new.name }}
+{% endblock title %}
+
+{% block content %}
+
+<h1><td><a class="nav-link" href="{% url 'new_detail' new.pk %}"> {{ new.name }}</a></td></h1>
+               <h2>
+                   <td>
+                   Выбраная категория:
+                   </td>
+                       <td>
+                           {% for cat in new.category_new.all %}
+                           {{ cat.name }}
+                           {% endfor %}
+
+                       </td>
+               </h2>
+               <h3><td>{{ new.description|truncatechars:500|censor }}</td></h3>
+               <td>{{ new.date_create|date:'M d Y' }}</td>
+
+{% endblock content %}}
